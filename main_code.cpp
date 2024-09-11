@@ -116,19 +116,23 @@ int main() {
     std::vector<Task> schedule = rate_monotonic_schedule(tasks);
 
     // Exibir o resultado no terminal
-    std::cout << "Schedulability: " << (schedulable ? "viable" : "not viable") << std::endl;
+    
     if (schedulable) {
+        std::cout << "\nSchedulability: " << (schedulable ? "viable" : "not viable") << std::endl;
         std::cout << "Suggested Schedule:\n";
         for (size_t i = 0; i < schedule.size(); ++i) {
             std::cout << "  Task ID: " << schedule[i].id << ", Priority: " << i + 1 << std::endl;
         }
+    }
+    else {
+        std::cout << "\nSchedulability: " << (schedulable ? "viable" : "not viable") << std::endl;
     }
     
     // Salvar a saída no arquivo JSON
     save_output(schedule, schedulable);
 
     // Iniciar o executivo cíclico com o tempo de ciclo definido
-    int cycle_time_ms = 1000; // Tempo de ciclo em milissegundos (ajustar conforme necessário)
+    int cycle_time_ms = 5000000; // Tempo de ciclo em milissegundos (ajustar conforme necessário)
     cyclic_executive(schedule, cycle_time_ms);
 
     return 0;
