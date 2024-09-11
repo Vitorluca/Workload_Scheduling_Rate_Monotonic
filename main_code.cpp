@@ -4,6 +4,8 @@
 #include <cmath>
 #include <algorithm>
 #include <nlohmann/json.hpp> // Certifique-se de ter a biblioteca nlohmann/json instalada
+#include <chrono>
+#include <thread>
 
 using json = nlohmann::json;
 
@@ -62,6 +64,32 @@ void save_output(const std::vector<Task>& tasks, bool schedulable) {
     }
 }
 
+void cyclic_executive(const std::vector<Task>& tasks, int cycle_time_ms) {
+    auto cycle_duration = std::chrono::milliseconds(cycle_time_ms);
+    while (true) {
+        auto start = std::chrono::high_resolution_clock::now();
+        
+        // Executar tarefas
+        for (const auto& task : tasks) {
+            // Simula a execução da tarefa
+            std::cout << "Executing Task ID: " << task.id << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(task.execution_time));
+        }
+
+        // Calcular o tempo restante no ciclo
+        auto end = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        auto sleep_time = cycle_duration - elapsed;
+
+        // Espera pelo restante do ciclo
+        if (sleep_time.count() > 0) {
+            std::this_thread::sleep_for(sleep_time);
+        } else {
+            std::cerr << "Warning: Task execution time exceeded cycle time!" << std::endl;
+        }
+    }
+}
+
 int main() {
     // Abrir o arquivo JSON de entrada
     std::ifstream file("tarefas.json");
@@ -98,6 +126,10 @@ int main() {
     
     // Salvar a saída no arquivo JSON
     save_output(schedule, schedulable);
+
+    // Iniciar o executivo cíclico com o tempo de ciclo definido
+    int cycle_time_ms = 1000; // Tempo de ciclo em milissegundos (ajustar conforme necessário)
+    cyclic_executive(schedule, cycle_time_ms);
 
     return 0;
 }
