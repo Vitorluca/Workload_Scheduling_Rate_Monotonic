@@ -89,10 +89,13 @@ int main() {
 
     // Exibir o resultado no terminal
     std::cout << "Schedulability: " << (schedulable ? "viable" : "not viable") << std::endl;
-    std::cout << "Suggested Schedule:\n";
-    for (size_t i = 0; i < schedule.size(); ++i) {
-        std::cout << "  Task ID: " << schedule[i].id << ", Priority: " << i + 1 << std::endl;
+    if (schedulable) {
+        std::cout << "Suggested Schedule:\n";
+        for (size_t i = 0; i < schedule.size(); ++i) {
+            std::cout << "  Task ID: " << schedule[i].id << ", Priority: " << i + 1 << std::endl;
+        }
     }
+    
 
     // Salvar a saída no arquivo JSON
     save_output(schedule, schedulable);
