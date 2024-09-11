@@ -1,20 +1,19 @@
 {
-    "tasks": [
-      {
-        "id": "T1",
-        "period": 500,
-        "execution_time": 100000
-      },
-      {
-        "id": "T2",
-        "period": 1000,
-        "execution_time": 20000
-      },
-      {
-        "id": "T3",
-        "period": 2000,
-        "execution_time": 4000
-      }
-    ]
-  }
-  
+  "tasks": [
+    {
+      "id": "T1",
+      "period": 500,
+      "execution_time": 100
+    },
+    {
+      "id": "T2",
+      "period": 2000,
+      "execution_time": 400
+    },
+    {
+      "id": "T3",
+      "period": 1000,
+      "execution_time": 200
+    }
+  ]
+}
