@@ -29,6 +29,9 @@ bool is_schedulable(const std::vector<Task>& tasks) {
     
     // Limite de utilização para Rate Monotonic
     double rm_limit = n * (std::pow(2.0, 1.0 / n) - 1.0);
+
+    std::cout << "\nrm_limit: " << rm_limit << std::endl;
+    std::cout << "Utilization: " << utilization << std::endl;
     
     return utilization <= rm_limit;
 }
@@ -132,7 +135,7 @@ int main() {
     save_output(schedule, schedulable);
 
     // Iniciar o executivo cíclico com o tempo de ciclo definido
-    int cycle_time_ms = 5000000; // Tempo de ciclo em milissegundos (ajustar conforme necessário)
+    int cycle_time_ms = 2000; // Tempo de ciclo em milissegundos (ajustar conforme necessário)
     cyclic_executive(schedule, cycle_time_ms);
 
     return 0;
