@@ -96,7 +96,6 @@ int main() {
         }
     }
     
-
     // Salvar a saída no arquivo JSON
     save_output(schedule, schedulable);
 
