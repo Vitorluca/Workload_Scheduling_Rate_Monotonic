@@ -2,13 +2,13 @@
     "tasks": [
       {
         "id": "T1",
-        "period": 50,
-        "execution_time": 10
+        "period": 300,
+        "execution_time": 40
       },
       {
         "id": "T2",
-        "period": 100,
-        "execution_time": 20
+        "period": 700,
+        "execution_time": 10
       },
       {
         "id": "T3",

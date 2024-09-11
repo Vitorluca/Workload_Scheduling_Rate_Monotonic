@@ -39,11 +39,34 @@ std::vector<Task> rate_monotonic_schedule(std::vector<Task>& tasks) {
     return tasks;
 }
 
+void save_output(const std::vector<Task>& tasks, bool schedulable) {
+    json output;
+    output["schedulability"] = schedulable ? "viable" : "not viable";
+
+    json suggested_schedule = json::array();
+    int priority = 1;
+    for (const auto& task : tasks) {
+        suggested_schedule.push_back({
+            {"id", task.id},
+            {"priority", priority++}
+        });
+    }
+    output["suggested_schedule"] = suggested_schedule;
+
+    std::ofstream file("output_tarefas.json");
+    if (file.is_open()) {
+        file << output.dump(4); // Formata o JSON com 4 espaços de indentação
+        file.close();
+    } else {
+        std::cerr << "Não foi possível abrir o arquivo de saída.\n";
+    }
+}
+
 int main() {
     // Abrir o arquivo JSON de entrada
     std::ifstream file("tarefas.json");
     if (!file.is_open()) {
-        std::cerr << "Não foi possível abrir o arquivo.\n";
+        std::cerr << "Não foi possível abrir o arquivo de entrada.\n";
         return 1;
     }
 
@@ -59,20 +82,20 @@ int main() {
     }
 
     // Calcular se o escalonamento é viável
-    if (is_schedulable(tasks)) {
-        std::cout << "Schedulability: viable\n";
-    } else {
-        std::cout << "Schedulability: not viable\n";
-    }
+    bool schedulable = is_schedulable(tasks);
 
     // Sugerir um escalonamento usando Rate Monotonic
     std::vector<Task> schedule = rate_monotonic_schedule(tasks);
-    
-    // Exibir o escalonamento sugerido
+
+    // Exibir o resultado no terminal
+    std::cout << "Schedulability: " << (schedulable ? "viable" : "not viable") << std::endl;
     std::cout << "Suggested Schedule:\n";
     for (size_t i = 0; i < schedule.size(); ++i) {
-        std::cout << "  Task ID: " << schedule[i].id << ", Priority: " << i + 1 << "\n";
+        std::cout << "  Task ID: " << schedule[i].id << ", Priority: " << i + 1 << std::endl;
     }
+
+    // Salvar a saída no arquivo JSON
+    save_output(schedule, schedulable);
 
     return 0;
 }

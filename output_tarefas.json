@@ -1,0 +1,17 @@
+{
+    "schedulability": "viable",
+    "suggested_schedule": [
+        {
+            "id": "T3",
+            "priority": 1
+        },
+        {
+            "id": "T1",
+            "priority": 2
+        },
+        {
+            "id": "T2",
+            "priority": 3
+        }
+    ]
+}
