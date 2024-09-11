@@ -1,0 +1,113 @@
+1. Configuração Básica
+
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "period": 500,
+      "execution_time": 100
+    },
+    {
+      "id": "T2",
+      "period": 2000,
+      "execution_time": 400
+    },
+    {
+      "id": "T3",
+      "period": 1000,
+      "execution_time": 200
+    }
+  ]
+}
+
+2. Configuração com Alta Carga de Utilização
+
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "period": 500,
+      "execution_time": 300
+    },
+    {
+      "id": "T2",
+      "period": 1000,
+      "execution_time": 600
+    },
+    {
+      "id": "T3",
+      "period": 1500,
+      "execution_time": 800
+    }
+  ]
+}
+
+3. Configuração com Tarefas de Curta Duração
+
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "period": 400,
+      "execution_time": 100
+    },
+    {
+      "id": "T2",
+      "period": 200,
+      "execution_time": 50
+    },
+    {
+      "id": "T3",
+      "period": 600,
+      "execution_time": 150
+    }
+  ]
+}
+
+4. Configuração com Tarefas de Longa Duração
+
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "period": 5000,
+      "execution_time": 2000
+    },
+    {
+      "id": "T2",
+      "period": 10000,
+      "execution_time": 4000
+    },
+    {
+      "id": "T3",
+      "period": 15000,
+      "execution_time": 6000
+    }
+  ]
+}
+
+5. Configuração Equilibrada
+
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "period": 700,
+      "execution_time": 200
+    },
+    {
+      "id": "T2",
+      "period": 1400,
+      "execution_time": 400
+    },
+    {
+      "id": "T3",
+      "period": 2800,
+      "execution_time": 800
+    }
+  ]
+}
+
+
+
+
